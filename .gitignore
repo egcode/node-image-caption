@@ -16,3 +16,6 @@ Thumbs.db
 
 
 .vscode/
+
+public/img/*
+

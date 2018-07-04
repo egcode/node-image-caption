@@ -87,8 +87,8 @@ function callName(req, res) {
     var projectPath = __dirname;  // Users/yujin/Desktop/nodePytonWithNN
     var imagePath = __dirname + "/public/img/image.png"; // Users/yujin/Desktop/nodePytonWithNN/public/img/image.png
 
-    console.log("projectPath: " + projectPath.toString());
-    console.log("Image Path: " + imagePath.toString());
+    // console.log("projectPath: " + projectPath.toString());
+    // console.log("Image Path: " + imagePath.toString());
 
     var spawn = require("child_process").spawn;
           
