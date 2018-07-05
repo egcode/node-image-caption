@@ -12,34 +12,34 @@ Create a Route (/upload) to handle the Form submission
 (handle POST requests to /upload)
 Express v4  Route definition
 ============================================================ */
-app.route('/upload')
-    .post(function (req, res, next) {
+// app.route('/upload')
+//     .post(function (req, res, next) {
 
-        var fstream;
-        req.pipe(req.busboy);
-        req.busboy.on('file', function (fieldname, file, filename) {
+//         var fstream;
+//         req.pipe(req.busboy);
+//         req.busboy.on('file', function (fieldname, file, filename) {
 
-            if (filename == undefined || filename == "") {
-                return res.redirect('/'); 
-            } 
+//             if (filename == undefined || filename == "") {
+//                 return res.redirect('/'); 
+//             } 
 
-            console.log("Uploading: " + filename);
+//             console.log("Uploading: " + filename);
 
-            //Path where image will be uploaded
-            // fstream = fs.createWriteStream(__dirname + '/public/img/' + filename);
-            fstream = fs.createWriteStream(__dirname + '/public/img/' + "image.png");
-            file.pipe(fstream);
-            fstream.on('close', function () {    
-                // console.log("Upload Finished of " + filename);              
-                console.log("Upload Finished of " + "image.png");              
+//             //Path where image will be uploaded
+//             // fstream = fs.createWriteStream(__dirname + '/public/img/' + filename);
+//             fstream = fs.createWriteStream(__dirname + '/public/img/' + "image.png");
+//             file.pipe(fstream);
+//             fstream.on('close', function () {    
+//                 // console.log("Upload Finished of " + filename);              
+//                 console.log("Upload Finished of " + "image.png");              
 
-                // return res.redirect(307, '/listDir'); // 307 - redirects POST
-                // return res.redirect('/imageView.html'); 
-                // res.sendStatus(200);
-            });
-        });
+//                 // return res.redirect(307, '/listDir'); // 307 - redirects POST
+//                 // return res.redirect('/imageView.html'); 
+//                 // res.sendStatus(200);
+//             });
+//         });
         
-    });
+//     });
 
 var server = app.listen(3030, function() {
     console.log('Listening on port %d', server.address().port);

@@ -19,7 +19,8 @@ function getImageCaptionFromServer() {
             // $message.append('<p>' + 'text' + '</p>');//showing data
             var $message = jQuery('.messages');//getting text from textField
             $message.append('<p><strong>' + caption + '</strong></p>');
-            
+            uiState(ENUM_COMPLETED_STATE);
+
         },
         error  : function(data) { 
             console.log('aaa error');
@@ -27,6 +28,4 @@ function getImageCaptionFromServer() {
 
         }
     }); 
-
-    
 }
