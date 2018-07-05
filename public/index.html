@@ -45,26 +45,6 @@ const ENUM_INITIAL_STATE  = 0,
     ENUM_PREPROCESS_STATE = 1,
     ENUM_COMPLETED_STATE  = 2;
 
-function uiState(state) {
-  if (state == ENUM_INITIAL_STATE) {
-      $("#formDiv").show();
-      $("#imageDiv").hide();
-      $("#captionDiv").hide();
-      $(".messages").hide();
-      $("#refreshButtonDiv").hide();
-  } else if (state == ENUM_PREPROCESS_STATE) {
-      $("#formDiv").hide();
-      $("#imageView").attr('src', '/img/imagedata');
-      $("#imageDiv").show();
-      $("#captionDiv").show();
-      $(".messages").show();
-      $("#refreshButtonDiv").hide();
-  } else if (state == ENUM_COMPLETED_STATE) {
-      uiState(ENUM_PREPROCESS_STATE);
-      $("#refreshButtonDiv").show();
-  }
-}
-
 // Initial UI state
 uiState(ENUM_INITIAL_STATE);
 

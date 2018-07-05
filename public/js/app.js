@@ -1,4 +1,24 @@
  
+function uiState(state) {
+    if (state == ENUM_INITIAL_STATE) {
+        $("#formDiv").show();
+        $("#imageDiv").hide();
+        $("#captionDiv").hide();
+        $(".messages").hide();
+        $("#refreshButtonDiv").hide();
+    } else if (state == ENUM_PREPROCESS_STATE) {
+        $("#formDiv").hide();
+        $("#imageView").attr('src', '/img/imagedata');
+        $("#imageDiv").show();
+        $("#captionDiv").show();
+        $(".messages").show();
+        $("#refreshButtonDiv").hide();
+    } else if (state == ENUM_COMPLETED_STATE) {
+        uiState(ENUM_PREPROCESS_STATE);
+        $("#refreshButtonDiv").show();
+    }
+  }
+  
 function getImageCaptionFromServer() {
     console.log("Zayebis");
     // Hide button
