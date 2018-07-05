@@ -34,8 +34,8 @@ app.route('/upload')
                 console.log("Upload Finished of " + "image.png");              
 
                 // return res.redirect(307, '/listDir'); // 307 - redirects POST
-                return res.redirect('/imageView.html'); 
-
+                // return res.redirect('/imageView.html'); 
+                // res.sendStatus(200);
             });
         });
         
@@ -112,4 +112,29 @@ function callName(req, res) {
     })
     
 }
+
+
+
+
+
+var multer  =   require('multer');
+var storage =   multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './public/img');
+  },
+  filename: function (req, file, callback) {
+    // callback(null, file.fieldname + '-' + Date.now());
+    callback(null, "image.png");
+  }
+});
+var upload = multer({ storage : storage}).single('userPhoto');
+
+app.post('/api/photo',function(req,res){
+    upload(req,res,function(err) {
+        if(err) {
+            return res.end("Error uploading file.");
+        }
+        res.end("File is uploaded");
+    });
+});
 

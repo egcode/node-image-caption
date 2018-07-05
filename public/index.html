@@ -1,21 +1,76 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="APP">
-<head>
-    <meta charset="UTF-8">
-    <title>angular file upload</title>
-</head>
+<html>
+  <head>
+    <title>File upload Node.</title>
+  </head>
+  <body>
+      
+        <div id="formDiv" >
+            <form id="uploadForm"
+                enctype="multipart/form-data"
+                action="/api/photo"
+                method="post">
+             <input type="file" name="userPhoto" />
+             <input type="submit" value="Upload Image" name="submit">
+             <span id = "status"></span>
+       
+        </div>   
+    
 
-<body>
+        <div id="imageDiv" >
+            <img id="imageView"  src="" width="500">
+        </div>   
 
-    <div class="upload">
-        <form method='post' action='/upload' enctype="multipart/form-data">
-            <!-- <input type='file' name='fileUploaded' accept="image/x-png, image/jpeg"> -->
-            <input type='file' name='fileUploaded' accept="image/x-png">
-            <input type='submit'>
-        </form>
-    </div>  
-                  
- </body>
+        <div id="captionDiv">
+            <button id="caption" onclick="getImageCaptionFromServer()">Get Image Caption</button>        
+        </div>   
+
+         
+        <div class="messages">
+             <!-- Image Caption goes here  -->
+        </div>   
 
 
+    </form>
+  </body>
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
+  <script type="text/javascript" src="/js/app.js"></script>
+  <script src="/js/jquery-3.1.0.min.js"></script>
+  <script src="/js/jquery.form.min.js"></script>
+  <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script> -->
+  <script>
+    $("#imageDiv").hide();
+    $("#captionDiv").hide();
+    $(".messages").hide();
+
+    $(document).ready(function() {
+  
+       $('#uploadForm').submit(function() {
+          $("#status").empty().text("File is uploading...");
+          $(this).ajaxSubmit({
+  
+            error: function(xhr) {
+                status('Error: ' + xhr.status);
+            },
+  
+            success: function(response) {
+                $("#status").empty().text(response);
+                    console.log(response);
+                    console.log("ZAYEBIS UPLOADED");
+                    $("#formDiv").hide();
+
+                    $("#imageView").attr('src', '/img/image.png');
+                    $("#imageDiv").show();
+
+                    $("#captionDiv").show();
+                    $(".messages").show();
+
+           }
+      });
+          //Very important line, it disable the page refresh.
+          return false;
+      });    
+  });
+  </script>
+  
 </html>
+

@@ -10,15 +10,15 @@ function getImageCaptionFromServer() {
         type: 'POST',
         data: "",
         contentType: 'application/json',
-        success: function(data) { 
+        success: function(caption) { 
             console.log('aaa success');
-            console.log(data);
+            console.log(caption);
 
             // var $message = jQuery('.messages');//getting text from textField
             // $message.append('<p><strong>' + 'name'  + ' ' + '</strong></p>');
             // $message.append('<p>' + 'text' + '</p>');//showing data
             var $message = jQuery('.messages');//getting text from textField
-            $message.append('<p><strong>' + data + '</strong></p>');
+            $message.append('<p><strong>' + caption + '</strong></p>');
             
         },
         error  : function(data) { 
