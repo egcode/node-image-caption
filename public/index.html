@@ -21,7 +21,7 @@
         </div>   
 
         <div id="captionDiv">
-            <button id="caption" onclick="getImageCaptionFromServer()">Get Image Caption</button>        
+            <button type="button" id="caption" onclick="getImageCaptionFromServer()">Get Image Caption</button>        
         </div>   
 
          
@@ -29,31 +29,21 @@
              <!-- Image Caption goes here  -->
         </div> 
 
-        <!-- <div id="refreshButtonDiv">
-            <button id="restart" onclick="refreshClick()">Try One more time</button>        
-        </div>    -->
+        <div id="refreshButtonDiv">
+            <button type="button" id="restart" onclick="refreshClick()">Retry</button>        
+        </div>  
     
 
     </form>
   </body>
-  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
   <script type="text/javascript" src="/js/app.js"></script>
   <script src="/js/jquery-3.1.0.min.js"></script>
   <script src="/js/jquery.form.min.js"></script>
-  <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script> -->
   <script>
 
 const ENUM_INITIAL_STATE  = 0,
     ENUM_PREPROCESS_STATE = 1,
     ENUM_COMPLETED_STATE  = 2;
-
-uiState(ENUM_INITIAL_STATE);
-
-// function refreshClick() {
-//     console.log("\nSSD  ZZAA \n\n");
-//     // uiState(ENUM_INITIAL_STATE);
-// }
-
 
 function uiState(state) {
   if (state == ENUM_INITIAL_STATE) {
@@ -75,32 +65,29 @@ function uiState(state) {
   }
 }
 
+// Initial UI state
+uiState(ENUM_INITIAL_STATE);
+
+// UPLOAD
 $(document).ready(function() {
+    $('#uploadForm').submit(function() {
+    $("#status").empty().text("File is uploading...");
+    $(this).ajaxSubmit({
 
-$('#uploadForm').submit(function() {
-   $("#status").empty().text("File is uploading...");
-   $(this).ajaxSubmit({
+        error: function(xhr) {
+            status('Error: ' + xhr.status);
+        },
 
-     error: function(xhr) {
-         status('Error: ' + xhr.status);
-     },
-
-       success: function(response) {
-           $("#status").empty().text(response);
-               console.log(response);
-               console.log("ZAYEBIS UPLOADED");
-
-               // $("#formDiv").hide();
-               // $("#imageView").attr('src', '/img/image.png');
-               // $("#imageDiv").show();
-               // $("#captionDiv").show();
-               // $(".messages").show();
-               uiState(ENUM_PREPROCESS_STATE);
-       }
-   });
-       //Very important line, it disable the page refresh.
-       return false;
-   });    
+        success: function(response) {
+            $("#status").empty().text(response);
+                console.log(response);
+                console.log("ZAYEBIS UPLOADED");
+                uiState(ENUM_PREPROCESS_STATE);
+        }
+    });
+        //Very important line, it disable the page refresh.
+        return false;
+    });    
 });
 
   </script>

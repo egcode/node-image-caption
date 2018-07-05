@@ -1,6 +1,4 @@
-
-
-  
+ 
 function getImageCaptionFromServer() {
     console.log("Zayebis");
     // Hide button
@@ -28,4 +26,8 @@ function getImageCaptionFromServer() {
 
         }
     }); 
+}
+
+function refreshClick() {
+    location.reload(); // reload all
 }
