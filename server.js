@@ -85,7 +85,7 @@ function callName(req, res) {
     var sys = require('util');
 
     var projectPath = __dirname;  // Users/yujin/Desktop/nodePytonWithNN
-    var imagePath = __dirname + "/public/img/image.png"; // Users/yujin/Desktop/nodePytonWithNN/public/img/image.png
+    var imagePath = __dirname + "/public/img/imagedata"; // Users/yujin/Desktop/nodePytonWithNN/public/img/image.png
 
     // console.log("projectPath: " + projectPath.toString());
     // console.log("Image Path: " + imagePath.toString());
@@ -124,7 +124,7 @@ var storage =   multer.diskStorage({
   },
   filename: function (req, file, callback) {
     // callback(null, file.fieldname + '-' + Date.now());
-    callback(null, "image.png");
+    callback(null, "imagedata");
   }
 });
 var upload = multer({ storage : storage}).single('userPhoto');

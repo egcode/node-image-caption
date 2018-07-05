@@ -10,7 +10,7 @@
                 action="/api/photo"
                 method="post">
             <!-- <input type='file' name='fileUploaded' accept="image/x-png, image/jpeg"> -->
-             <input type="file" name="userPhoto" accept="image/x-png"/>
+             <input type="file" name="userPhoto" accept="image/x-png, image/jpeg"/>
              <input type="submit" value="Upload Image" name="submit">
              <span id = "status"></span>
         </div>   
@@ -54,7 +54,7 @@ function uiState(state) {
       $("#refreshButtonDiv").hide();
   } else if (state == ENUM_PREPROCESS_STATE) {
       $("#formDiv").hide();
-      $("#imageView").attr('src', '/img/image.png');
+      $("#imageView").attr('src', '/img/imagedata');
       $("#imageDiv").show();
       $("#captionDiv").show();
       $(".messages").show();
