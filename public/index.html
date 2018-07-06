@@ -28,13 +28,14 @@
     }
     
     p {
-        color: lightGray;
+        color: black;
         text-align:center;
     }
 
     #topContainer {
         background-image:url("img/bg.jpg");
         width:100%;
+        height:100%;
         background-size:cover;
     }
         
@@ -55,13 +56,12 @@
 </style>
   <body>
       
-
+    <div>
+        <p class="lead">Upload png or jpg image and check how AI will describe it</p>
+    </div>
+    
     <div class="container contentContainer" id="topContainer">
 
-        <div class="center">
-            <h1 class="center title">Image Caption</h1>
-            <p class="lead center">Upload png or jpg image and check how AI will describe it</p>
-        </div>
     
         <div id="formDiv" class="center">
             <!-- <form id="uploadForm"
@@ -112,14 +112,15 @@
                 <!-- Image Caption goes here  -->
         </div> 
 
+
+        <div class="marginTop center" id="imageDiv" >
+            <img id="imageView"  src="" width="500">
+        </div> 
+
         <div class="center" id="refreshButtonDiv">
-            <button class="btn btn-success btn-lg marginTop" type="button" id="restart" onclick="refreshClick()">Retry</button>        
+                <button class="btn btn-success btn-lg marginTop" type="button" id="restart" onclick="refreshClick()">Try another one</button>        
         </div>  
     
-        <div class="center" id="imageDiv" >
-            <img id="imageView"  src="" width="500">
-        </div>   
-
     
     </div>
 
@@ -131,6 +132,33 @@
   <script src="/js/jquery.form.min.js"></script>
   <script>
 
+    // Spinner
+    var opts = {
+        lines: 18, // The number of lines to draw
+        length: 0, // The length of each line
+        width: 17, // The line thickness
+        radius: 46, // The radius of the inner circle
+        scale: 1.8, // Scales overall size of the spinner
+        corners: 1, // Corner roundness (0..1)
+        color: '#e0ff13', // CSS color or array of colors
+        fadeColor: 'transparent', // CSS color or array of colors
+        speed: 2.2, // Rounds per second
+        rotate: 0, // The rotation offset
+        animation: 'spinner-line-fade-quick', // The CSS animation name for the lines
+        direction: 1, // 1: clockwise, -1: counterclockwise
+        zIndex: 2e9, // The z-index (defaults to 2000000000)
+        className: 'spinner', // The CSS class to assign to the spinner
+        top: '50%', // Top position relative to parent
+        left: '50%', // Left position relative to parent
+        shadow: '0 0 1px transparent', // Box-shadow for the lines
+        position: 'absolute' // Element positioning
+    };
+    var target = document.getElementById('topContainer');
+    // var spinner = new Spinner(opts).spin(target);
+    var spinner = new Spinner(opts);
+
+
+
 const ENUM_INITIAL_STATE  = 0,
     ENUM_PREPROCESS_STATE = 1,
     ENUM_COMPLETED_STATE  = 2;
@@ -140,12 +168,16 @@ uiState(ENUM_INITIAL_STATE);
 
 // UPLOAD
 $(document).ready(function() {
+
     $('#uploadForm').submit(function() {
-    $("#status").empty().text("File is uploading...");
-    $(this).ajaxSubmit({
+        spinner.spin(target);
+
+        $("#status").empty().text("File is uploading...");
+        $(this).ajaxSubmit({
 
         error: function(xhr) {
             status('Error: ' + xhr.status);
+            spinner.stop(target);
         },
 
         success: function(response) {
@@ -153,6 +185,7 @@ $(document).ready(function() {
                 console.log(response);
                 console.log("ZAYEBIS UPLOADED");
                 uiState(ENUM_PREPROCESS_STATE);
+                spinner.stop(target);
         }
     });
         //Very important line, it disable the page refresh.
@@ -160,30 +193,6 @@ $(document).ready(function() {
     });    
 });
 
-    // var opts = {
-    //   lines: 12,            // The number of lines to draw
-    //   length: 7,            // The length of each line
-    //   width: 5,             // The line thickness
-    //   radius: 10,           // The radius of the inner circle
-    //   scale: 1.0,           // Scales overall size of the spinner
-    //   corners: 1,           // Roundness (0..1)
-    //   color: '#000',        // #rgb or #rrggbb
-    //   opacity: 1/4,         // Opacity of the lines
-    //   rotate: 0,            // Rotation offset
-    //   direction: 1,         // 1: clockwise, -1: counterclockwise
-    //   speed: 1,             // Rounds per second
-    //   trail: 100,           // Afterglow percentage
-    //   fps: 20,              // Frames per second when using setTimeout()
-    //   zIndex: 2e9,          // Use a high z-index by default
-    //   className: 'spinner', // CSS class to assign to the element
-    //   top: '50%',           // center vertically
-    //   left: '50%',          // center horizontally
-    //   shadow: false,        // Whether to render a shadow
-    //   hwaccel: false,       // Whether to use hardware acceleration (might be buggy)
-    //   position: 'absolute'  // Element positioning
-    // };
-    // var target = document.getElementById('imageDiv');
-    // var spinner = new Spinner(opts).spin(target);
 
 
   </script>

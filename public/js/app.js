@@ -23,6 +23,7 @@ function getImageCaptionFromServer() {
     console.log("Zayebis");
     // Hide button
     $("#caption").hide();
+    spinner.spin(target);
 
     $.ajax('http://localhost:3030/process', {
         type: 'POST',
@@ -36,13 +37,16 @@ function getImageCaptionFromServer() {
             // $message.append('<p><strong>' + 'name'  + ' ' + '</strong></p>');
             // $message.append('<p>' + 'text' + '</p>');//showing data
             var $message = jQuery('.messages');//getting text from textField
-            $message.append('<p><strong>' + caption + '</strong></p>');
+            $message.append('<h1><strong>' + caption + '</strong></h1>');
             uiState(ENUM_COMPLETED_STATE);
+            spinner.stop(target);
 
         },
         error  : function(data) { 
+            uiState(ENUM_INITIAL_STATE);
             console.log('aaa error');
             console.log(data);
+            spinner.stop(target);
 
         }
     }); 
