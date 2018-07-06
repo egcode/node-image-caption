@@ -21,7 +21,9 @@ function uiState(state) {
 
 function uploadImage() {
     $('#uploadForm').submit(function() {
-        spinner.spin(target);
+
+        var target = document.getElementById('topContainer');
+        var spinner = new Spinner(opts).spin(target);
 
         $("#status").empty().text("File is uploading...");
         $(this).ajaxSubmit({
@@ -48,7 +50,9 @@ function getImageCaptionFromServer() {
     console.log("Zayebis");
     // Hide button
     $("#caption").hide();
-    spinner.spin(target);
+
+    var target = document.getElementById('imageDiv');
+    var spinner = new Spinner(opts).spin(target);
 
     $.ajax('http://localhost:3030/process', {
         type: 'POST',
