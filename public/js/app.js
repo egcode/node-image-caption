@@ -18,6 +18,31 @@ function uiState(state) {
         $("#refreshButtonDiv").show();
     }
   }
+
+function uploadImage() {
+    $('#uploadForm').submit(function() {
+        spinner.spin(target);
+
+        $("#status").empty().text("File is uploading...");
+        $(this).ajaxSubmit({
+
+        error: function(xhr) {
+            status('Error: ' + xhr.status);
+            spinner.stop(target);
+        },
+
+        success: function(response) {
+            $("#status").empty().text(response);
+                console.log(response);
+                console.log("ZAYEBIS UPLOADED");
+                uiState(ENUM_PREPROCESS_STATE);
+                spinner.stop(target);
+        }
+    });
+        //Very important line, it disable the page refresh.
+        return false;
+    });    
+}
   
 function getImageCaptionFromServer() {
     console.log("Zayebis");

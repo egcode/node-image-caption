@@ -93,8 +93,8 @@
                 method="post">
                     
                 <span class="btn btn-primary btn-file">
-                    <input type="file" name="userPhoto" accept="image/x-png, image/jpeg"/>
-                    <input type="submit" class="btn btn-success btn-lg marginTop" value="Upload Image" name="submit">
+                    <input id="uploadImage" type="file" name="userPhoto" accept="image/x-png, image/jpeg"/>
+                    <input id="submitButton" type="submit" class="btn btn-success btn-lg marginTop" value="Upload Image" name="submit">
                 </span>
             </form>
                   
@@ -169,30 +169,16 @@ uiState(ENUM_INITIAL_STATE);
 // UPLOAD
 $(document).ready(function() {
 
-    $('#uploadForm').submit(function() {
-        spinner.spin(target);
-
-        $("#status").empty().text("File is uploading...");
-        $(this).ajaxSubmit({
-
-        error: function(xhr) {
-            status('Error: ' + xhr.status);
-            spinner.stop(target);
-        },
-
-        success: function(response) {
-            $("#status").empty().text(response);
-                console.log(response);
-                console.log("ZAYEBIS UPLOADED");
-                uiState(ENUM_PREPROCESS_STATE);
-                spinner.stop(target);
+    $('#submitButton').bind("click",function() { 
+        var imgVal = $('#uploadImage').val(); 
+        if(imgVal=='')  { 
+            alert("empty input file"); 
+            return false; 
+        } else {
+            uploadImage();
         }
-    });
-        //Very important line, it disable the page refresh.
-        return false;
-    });    
+    }); 
 });
-
 
 
   </script>
