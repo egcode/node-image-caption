@@ -17,5 +17,6 @@ Thumbs.db
 
 .vscode/
 
+package-lock.json
 
 public/img/image.png
