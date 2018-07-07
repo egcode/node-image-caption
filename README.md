@@ -14,7 +14,7 @@ CNN-RNN  was trained with [COCO dataset](http://cocodataset.org/#home).
  <img src="images/2.png" width="550">
 
 ## **Requirements for installation**
-- Node JS, Pytorch, Numpy, PIL,
+- Node JS, Pytorch, Numpy, PIL.
 <br><br>
 
 ## **Run**
