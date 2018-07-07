@@ -1,21 +1,23 @@
  
+animSpeed = 100;
+
 function uiState(state) {
     if (state == ENUM_INITIAL_STATE) {
-        $("#formDiv").show();
-        $("#imageDiv").hide();
-        $("#captionDiv").hide();
-        $(".messages").hide();
-        $("#refreshButtonDiv").hide();
+        $("#formDiv").show(animSpeed);
+        $("#imageDiv").hide(animSpeed);
+        $("#captionDiv").hide(animSpeed);
+        $(".messages").hide(animSpeed);
+        $("#refreshButtonDiv").hide(animSpeed);
     } else if (state == ENUM_PREPROCESS_STATE) {
-        $("#formDiv").hide();
+        $("#formDiv").hide(animSpeed);
         $("#imageView").attr('src', '/img/imagedata');
-        $("#imageDiv").show();
-        $("#captionDiv").show();
-        $(".messages").show();
-        $("#refreshButtonDiv").hide();
+        $("#imageDiv").show(animSpeed);
+        $("#captionDiv").show(animSpeed);
+        // $(".messages").show(animSpeed);
+        $("#refreshButtonDiv").hide(animSpeed);
     } else if (state == ENUM_COMPLETED_STATE) {
         uiState(ENUM_PREPROCESS_STATE);
-        $("#refreshButtonDiv").show();
+        $("#refreshButtonDiv").show(animSpeed);
     }
   }
 
@@ -49,7 +51,7 @@ function uploadImage() {
 function getImageCaptionFromServer() {
     console.log("Zayebis");
     // Hide button
-    $("#caption").hide();
+    $("#caption").hide(animSpeed);
 
     var target = document.getElementById('imageDiv');
     var spinner = new Spinner(opts).spin(target);
@@ -67,6 +69,8 @@ function getImageCaptionFromServer() {
             // $message.append('<p>' + 'text' + '</p>');//showing data
             var $message = jQuery('.messages');//getting text from textField
             $message.append('<h1><strong>' + caption + '</strong></h1>');
+            $(".messages").show(animSpeed);
+
             uiState(ENUM_COMPLETED_STATE);
             spinner.stop(target);
 
