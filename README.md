@@ -4,6 +4,8 @@
 <img src="images/1.png" width="550">
 
 
+## Description
+
 NodeJS is wrapped around Pytorch Neural Network. <br>
 
 CNN-RNN  was trained with [COCO dataset](http://cocodataset.org/#home).
