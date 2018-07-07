@@ -18,4 +18,4 @@ CNN-RNN  was trained with [COCO dataset](http://cocodataset.org/#home).
 <br><br>
 
 ## **Run**
-To run the app you just need to install all dependencies and hit $'node server.js'$
+To run the app you just need to install all dependencies and hit 'node server.js'
