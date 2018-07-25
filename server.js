@@ -1,10 +1,7 @@
 var express = require('express');    //Express Web Server 
-// var busboy = require('connect-busboy'); //middleware for form/file upload
 var path = require('path');     //used for file path
-// var fs = require('fs-extra');       //File System - for file manipulation
 
 var app = express();
-// app.use(busboy());
 app.use(express.static(path.join(__dirname, 'public')));
 
 /* ========================================================== 
@@ -35,35 +32,6 @@ var server = app.listen(3030, function() {
     console.log('Listening on port %d', server.address().port);
 });
 
-// app.post('/listDir', function(req, res) {
-//     console.log("bla nahuy");
-
-//     const directory = './public/img/';
-
-//     // List files in directory
-//     fs.readdir(directory, (err, files) => {
-//         files.forEach(file => {
-//           console.log("\n\n");
-//           console.log(file);      
-//         });
-//         // deleteFiles(directory);
-//       })
-//     // res.sendStatus(200);
-//     return res.redirect('/imageView.html');
-//   });
-  
-
-// function deleteFiles(directory) {
-//     fs.readdir(directory, (err, files) => {
-//         if (err) throw err;
-//         for (const file of files) {
-//             fs.unlink(path.join(directory, file), err => {
-//             if (err) throw err;
-//             });
-//         }
-//     });
-// }
-
 ///////////////////////////////////
 // PYTHON
 ///////////////////////////////////
@@ -87,16 +55,8 @@ function callName(req, res) {
                                 projectPath.toString(),
                                 imagePath.toString()] );
  
-    // Takes stdout data from script which executed
-    // with arguments and send this data to res object
     process.stdout.on('data', function(data) {
         console.log("\n\nResponse from python: " + data.toString());
-
-        // var retryButton = "<form action=\"/\" method=\"get\"><button>Retry</button></form>";
-        // var comment = "<img src=\"/img/image.png\" width=\"500\"><div class=\"messages\">" + data.toString() + "</div>";
-        // comment = comment + retryButton;
-        // res.send(comment);
-
         res.send(data.toString());
 
     })
