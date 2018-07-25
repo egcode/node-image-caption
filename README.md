@@ -8,7 +8,7 @@
 
 NodeJS is wrapped around Pytorch Neural Network. <br>
 
-Convolutional Neural Network is pretrained Resnet50.
+Convolutional Neural Network is pretrained Resnet50. <br>
 CNN-RNN encoder-decoder pair  was trained with [COCO dataset](http://cocodataset.org/#home).
 
  Approximate process of traing is described in this [paper](https://arxiv.org/pdf/1411.4555.pdf) <br>
