@@ -59,12 +59,12 @@
 </style>
   <body>
       
-    <div>
-        <p class="lead">Upload png or jpg image and check how AI will describe it</p>
+    <a href="https://github.com/egcode/image-caption" target="_blank"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 1000;" src="./img/fork_me.png"></a>
+    <div style="height: 50px; margin-bottom: 20px;">
+        <p style="color:black;" class="lead center">Upload png or jpg image and check how AI will describe it</p>
     </div>
-    
-    <div class="container contentContainer" id="topContainer">
 
+    <div class="container contentContainer" id="topContainer">
     
         <div id="formDiv" class="center">
             <form id="uploadForm" class="marginTop"
@@ -77,16 +77,11 @@
                     <input id="submitButton" type="submit" class="btn btn-success btn-lg marginTop" value="Upload Image" name="submit">
                 </span>
             </form>
-                  
-
         </div>   
 
-        
-        
         <div class="center" id="captionDiv">
                 <button class="btn btn-success btn-lg marginTop" type="button" id="caption" onclick="getImageCaptionFromServer()">Get Image Caption</button>        
         </div>   
-    
                 
         <div class="messages center">
                 <!-- Image Caption goes here  -->
@@ -100,11 +95,8 @@
         <div class="center" id="refreshButtonDiv">
                 <button class="btn btn-success btn-lg marginTop" type="button" id="restart" onclick="refreshClick()">Try another one</button>        
         </div>  
-    
-    
     </div>
 
-    
   </body>
   <script type="text/javascript" src="/js/app.js"></script>
   <script src="/js/spin.js"></script>
