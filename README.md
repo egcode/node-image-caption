@@ -1,6 +1,6 @@
 # Image Caption <br>
 
-## Upload any image and Neural Network will generate caption for it. [Try it here](https://egstack.com/index_caption.html)
+## Upload any image and Neural Network will generate caption for it. <br> You can try it [here](https://egstack.com/index_caption.html)
 <img src="images/1.png" width="550">
 
 
